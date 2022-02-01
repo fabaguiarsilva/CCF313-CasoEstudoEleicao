@@ -1,5 +1,11 @@
 package br.ufv.caf;
 
+import br.ufv.caf.controle.ControleEleicao;
+import br.ufv.caf.modelo.entidade.Eleitor;
+import br.ufv.caf.modelo.entidade.Candidato;
+import br.ufv.caf.visao.TelaResultado;
+import br.ufv.caf.visao.TelaVotacao;
+
 /**
  *
  * @author fabriciosilva
@@ -7,7 +13,7 @@ package br.ufv.caf;
 public class EleicaoReitorUFSJ2022 {
     
     public static void main(String[] args){
-        Eleicao eleicao = new Eleicao();
+        ControleEleicao eleicao = new ControleEleicao();
         
         eleicao.addCandidato(new Candidato("UFSJ 1",1));
         eleicao.addCandidato(new Candidato("UFSJ 2",2));        
@@ -19,6 +25,12 @@ public class EleicaoReitorUFSJ2022 {
         eleicao.addEleitor(new Eleitor("Aluno 4",444));        
         eleicao.addEleitor(new Eleitor("Aluno 5",555));        
         
-        eleicao.iniciarEleicao();
+        TelaVotacao telaVotacao = new TelaVotacao();
+        telaVotacao.mostrar(eleicao);
+        
+        TelaResultado telaResultado = new TelaResultado();
+        telaResultado.mostrar(eleicao);
+
+
     }
 }

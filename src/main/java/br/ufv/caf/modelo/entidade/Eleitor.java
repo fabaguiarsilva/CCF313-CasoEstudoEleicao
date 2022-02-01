@@ -1,4 +1,4 @@
-package br.ufv.caf;
+package br.ufv.caf.modelo.entidade;
 
 /**
  *
@@ -19,8 +19,5 @@ public class Eleitor {
 
     public String getNome() {
         return nome;
-    }
-    
-    
-    
+    }       
 }

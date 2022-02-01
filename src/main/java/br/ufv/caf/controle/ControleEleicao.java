@@ -1,6 +1,9 @@
-package br.ufv.caf;
+package br.ufv.caf.controle;
 
-import java.util.Scanner;
+import br.ufv.caf.modelo.entidade.Urna;
+import br.ufv.caf.modelo.entidade.Cedula;
+import br.ufv.caf.modelo.entidade.Eleitor;
+import br.ufv.caf.modelo.entidade.Candidato;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,13 +12,13 @@ import java.util.Iterator;
  *
  * @author fabriciosilva
  */
-public class Eleicao {
+public class ControleEleicao {
 
     private ArrayList<Candidato> candidatos;
     private ArrayList<Eleitor> eleitores;
     private Urna urna;
     
-    public Eleicao(){
+    public ControleEleicao(){
         candidatos = new ArrayList();
         eleitores = new ArrayList();
         urna = new Urna();
@@ -29,36 +32,34 @@ public class Eleicao {
         eleitores.add(e);
     }   
     
-    void iniciarEleicao(){       
-        
-        coletarVotos();
-        
+    /**
+     * 
+     * @return String com nomes e números
+     * dos candidatos
+     */
+    public String listarCandidatos(){
+        String candidatosStr = "";
+        for(Candidato c : candidatos){
+            candidatosStr += c.getNumero() + " para votar no"
+                    + "candidato "+c.getNome()+"\n";           
+        }
+        return candidatosStr;
+    }
+    
+    public void votar(int matricula, int voto){
+        contabilizaVoto(voto);
+    }
+    
+    public String resultado(){
         Candidato vencedor = apurarEleicao();
-        if(vencedor != null){
-            System.out.println("Vencedor: "+vencedor.getNome());
+        if(vencedor != null){            
+            return "Vencedor: "+vencedor.getNome();
         }else{
-            System.out.println("Empate!");
+            return "Empate!";
         }
     }
     
-    void coletarVotos(){
-        
-        System.out.println("Bem-vindo! Digite: ");
-        for(Candidato c : candidatos){
-            System.out.println(c.getNumero() + " para votar no"
-                    + "candidato "+c.getNome());
-        }
-                
-        Scanner scan = new Scanner(System.in);
-        
-        for(Eleitor e : eleitores){
-            System.out.println("Eleitor: "+e.getNome());
-            int voto = scan.nextInt();
-            contabilizaVoto(voto);
-        }
-    }
-
-    void contabilizaVoto(int voto){
+    public void contabilizaVoto(int voto){
         for(Candidato c : candidatos){
            if(c.getNumero() == voto){
                 Cedula cedula = new Cedula(voto);
@@ -68,7 +69,7 @@ public class Eleicao {
         }        
     }
     
-    Candidato apurarEleicao(){
+    public Candidato apurarEleicao(){
         
         HashMap<Integer,Integer> votos = urna.contabilizaVotos();
         
@@ -92,7 +93,7 @@ public class Eleicao {
                           
         
         if(houveEmpate){
-            System.out.println("Empate! Rodar novamente!");
+            //System.out.println("Empate! Rodar novamente!");
             return null;
         }else{
             for(Candidato c : candidatos){

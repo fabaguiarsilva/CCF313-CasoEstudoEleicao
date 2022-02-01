@@ -1,6 +1,9 @@
 
 package br.ufv.caf;
 
+import br.ufv.caf.controle.ControleEleicao;
+import br.ufv.caf.modelo.entidade.Eleitor;
+import br.ufv.caf.modelo.entidade.Candidato;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -9,10 +12,10 @@ import org.junit.jupiter.api.Test;
  */
 public class EleicaoTest {
     
-    Eleicao eleicao;
+    ControleEleicao eleicao;
     
     void initBeforeAll(){
-        eleicao = new Eleicao();
+        eleicao = new ControleEleicao();
         
         eleicao.addCandidato(new Candidato("Candidato 1",1));
         eleicao.addCandidato(new Candidato("Candidato 2",2));        
@@ -31,7 +34,7 @@ public class EleicaoTest {
     public void testApurarEleicao1() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(1);
+        eleicao.contabilizaVoto(1);        
         eleicao.contabilizaVoto(1);
         eleicao.contabilizaVoto(1);
         eleicao.contabilizaVoto(1);

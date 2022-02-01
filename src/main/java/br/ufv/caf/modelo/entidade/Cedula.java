@@ -1,4 +1,4 @@
-package br.ufv.caf;
+package br.ufv.caf.modelo.entidade;
 
 import java.util.Date;
 
