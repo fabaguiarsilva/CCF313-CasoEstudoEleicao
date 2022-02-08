@@ -34,11 +34,11 @@ public class EleicaoTest {
     public void testApurarEleicao1() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(1);        
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(1);        
+        eleicao.votar(111,1);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,1);
+        eleicao.votar(444,1);        
+        eleicao.votar(555,1);        
         
         Candidato vencedor = eleicao.apurarEleicao();
         
@@ -50,11 +50,12 @@ public class EleicaoTest {
     public void testApurarEleicao2() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(2);        
+        eleicao.votar(111,2);        
+        eleicao.votar(222,2);        
+        eleicao.votar(333,2);
+        eleicao.votar(444,2);        
+        eleicao.votar(555,2);        
+
         
         Candidato vencedor = eleicao.apurarEleicao();
         
@@ -66,11 +67,11 @@ public class EleicaoTest {
     public void testApurarEleicao3() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(3);        
+        eleicao.votar(111,3);        
+        eleicao.votar(222,3);        
+        eleicao.votar(333,3);
+        eleicao.votar(444,3);        
+        eleicao.votar(555,3);        
         
         Candidato vencedor = eleicao.apurarEleicao();
         
@@ -82,11 +83,11 @@ public class EleicaoTest {
     public void testApurarEleicao4() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(3);        
+        eleicao.votar(111,1);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,1);
+        eleicao.votar(444,2);        
+        eleicao.votar(555,3);        
         
         Candidato vencedor = eleicao.apurarEleicao();
         
@@ -98,12 +99,12 @@ public class EleicaoTest {
     public void testApurarEleicao5() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(2);        
-        
+        eleicao.votar(111,1);        
+        eleicao.votar(222,2);        
+        eleicao.votar(333,3);
+        eleicao.votar(444,2);        
+        eleicao.votar(555,2);        
+                
         Candidato vencedor = eleicao.apurarEleicao();
         
         assert(vencedor.getNumero() == 2);
@@ -114,12 +115,12 @@ public class EleicaoTest {
     public void testApurarEleicao6() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(3);        
-        
+        eleicao.votar(111,3);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,2);
+        eleicao.votar(444,3);        
+        eleicao.votar(555,3);        
+                
         Candidato vencedor = eleicao.apurarEleicao();
         
         assert(vencedor.getNumero() == 3);
@@ -130,11 +131,11 @@ public class EleicaoTest {
     public void testApurarEleicao7() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(3);        
+        eleicao.votar(111,1);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,2);
+        eleicao.votar(444,2);        
+        eleicao.votar(555,3);        
         
         Candidato vencedor = eleicao.apurarEleicao();
         
@@ -146,12 +147,12 @@ public class EleicaoTest {
     public void testApurarEleicao8() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(1);        
-        
+        eleicao.votar(111,2);        
+        eleicao.votar(222,2);        
+        eleicao.votar(333,3);
+        eleicao.votar(444,3);        
+        eleicao.votar(555,1);        
+                
         Candidato vencedor = eleicao.apurarEleicao();
         
         assert(vencedor == null);
@@ -162,17 +163,98 @@ public class EleicaoTest {
     public void testApurarEleicao9() {
         
         initBeforeAll();
-        eleicao.contabilizaVoto(1);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(3);
-        eleicao.contabilizaVoto(2);
-        eleicao.contabilizaVoto(3);        
-        
+        eleicao.votar(111,1);        
+        eleicao.votar(222,2);        
+        eleicao.votar(333,3);
+        eleicao.votar(444,2);        
+        eleicao.votar(555,3);        
+                
         Candidato vencedor = eleicao.apurarEleicao();
         
         assert(vencedor == null);
         
     }    
     
+    @Test
+    public void testApurarEleicao10() {
+        
+        initBeforeAll();
+        eleicao.votar(111,1);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,2);
+        eleicao.votar(9999,2);        
+        eleicao.votar(8888,2);        
+                
+        Candidato vencedor = eleicao.apurarEleicao();
+        
+        assert(vencedor.getNumero() == 1);
+        
+    }       
     
+    
+    @Test
+    public void testApurarEleicao11() {
+        
+        initBeforeAll();
+        eleicao.votar(111,1);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,2);
+        eleicao.votar(444,2);        
+        eleicao.votar(8888,1);        
+                
+        Candidato vencedor = eleicao.apurarEleicao();
+        
+        assert(vencedor == null);
+        
+    }  
+    
+    @Test
+    public void testApurarEleicao12() {
+        
+        initBeforeAll();
+        eleicao.votar(8888,1);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,2);
+        eleicao.votar(444,2);        
+        eleicao.votar(111,1);        
+                
+        Candidato vencedor = eleicao.apurarEleicao();
+        
+        assert(vencedor == null);
+        
+    }     
+    
+    @Test
+    public void testApurarEleicao13() {
+        
+        initBeforeAll();
+        eleicao.votar(111,1);        
+        eleicao.votar(222,1);        
+        eleicao.votar(333,2);
+        eleicao.votar(444,2);        
+        eleicao.votar(111,1);        
+                
+        Candidato vencedor = eleicao.apurarEleicao();
+        
+        assert(vencedor == null);
+        
+    }  
+
+
+    @Test
+    public void testApurarEleicao14() {
+        
+        initBeforeAll();
+        eleicao.votar(111,1);        
+        eleicao.votar(111,1);        
+        eleicao.votar(333,2);
+        eleicao.votar(333,2);        
+        eleicao.votar(444,3);        
+        eleicao.votar(555,3);        
+                
+        Candidato vencedor = eleicao.apurarEleicao();
+        
+        assert(vencedor.getNumero() == 3);
+        
+    }       
 }

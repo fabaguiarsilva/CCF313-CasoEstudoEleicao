@@ -10,6 +10,11 @@ public class MembroAcademico {
         this.matricula=matricula;
     }
     
+    public int getMatricula(){
+        return this.matricula;
+    }
+    
+    
     @Override
     public String toString(){
         return "Membro Acadêmico:\n"+

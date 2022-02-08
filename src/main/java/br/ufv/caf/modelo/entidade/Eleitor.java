@@ -6,8 +6,17 @@ public class Eleitor extends MembroAcademico {
     public Eleitor(String nome, 
                     int matricula){        
         super(nome, matricula);
-        aptoVotar=false;
+        aptoVotar=true;
     }    
+    
+    public void aposVotar(){
+        this.aptoVotar = false;
+    }
+    
+    public boolean isAptoVotar(){
+        return this.aptoVotar;
+    }
+    
     
     @Override
     public String toString(){

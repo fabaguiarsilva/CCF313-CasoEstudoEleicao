@@ -46,8 +46,28 @@ public class ControleEleicao {
     }
     
     public void votar(int matricula, int voto){
-        contabilizaVoto(voto);
+        Eleitor eleitor = recuperaEleitor(matricula);
+        if(eleitor != null){
+            if(eleitor.isAptoVotar()){
+                contabilizaVoto(voto);
+                eleitor.aposVotar();
+            }else{
+                System.err.println("Eleitor já votou!");
+            }
+        }else{
+            System.err.println("Eleitor não existe!");
+        }
     }
+    
+    private Eleitor recuperaEleitor(int matricula){
+        for(Eleitor e : eleitores){
+            if(e.getMatricula() == matricula){
+                return e;
+            }
+        }
+        return null;
+    }
+    
     
     public String resultado(){
         Candidato vencedor = apurarEleicao();
