@@ -40,8 +40,7 @@ public class ControleEleicao {
     public String listarCandidatos(){
         String candidatosStr = "";
         for(Candidato c : candidatos){
-            candidatosStr += c.getNumero() + " para votar no"
-                    + "candidato "+c.getNome()+"\n";           
+            candidatosStr += c.toString();           
         }
         return candidatosStr;
     }
@@ -53,7 +52,7 @@ public class ControleEleicao {
     public String resultado(){
         Candidato vencedor = apurarEleicao();
         if(vencedor != null){            
-            return "Vencedor: "+vencedor.getNome();
+            return "Vencedor: "+vencedor.toString();
         }else{
             return "Empate!";
         }

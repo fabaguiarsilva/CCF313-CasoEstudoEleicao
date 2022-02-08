@@ -11,9 +11,9 @@ public class EleicaoReitorUFV2022 {
     public static void main(String[] args){
         ControleEleicao eleicao = new ControleEleicao();
         
-        eleicao.addCandidato(new Candidato("Candidato 1",1));
-        eleicao.addCandidato(new Candidato("Candidato 2",2));        
-        eleicao.addCandidato(new Candidato("Candidato 3",3));        
+        eleicao.addCandidato(new Candidato("Docente 1",111,"Computação",1));
+        eleicao.addCandidato(new Candidato("Docente 2",222,"Engenharia",2));
+        eleicao.addCandidato(new Candidato("Docente 3",333,"Biologia",3));
         
         eleicao.addEleitor(new Eleitor("Aluno 1",111));
         eleicao.addEleitor(new Eleitor("Aluno 2",222));        
