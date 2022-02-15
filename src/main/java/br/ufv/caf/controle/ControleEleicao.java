@@ -7,19 +7,21 @@ import br.ufv.caf.modelo.entidade.Candidato;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.apache.log4j.Logger;
+import java.util.Collections;
 
 /**
  *
  * @author fabriciosilva
  */
 public class ControleEleicao {
-
+    private static final Logger LOGGER = Logger.getLogger("br.ufv.caf.eleicao");
     private ArrayList<Candidato> candidatos;
     private ArrayList<Eleitor> eleitores;
     private Urna urna;
     
     public ControleEleicao(){
-        candidatos = new ArrayList();
+        candidatos = new ArrayList<Candidato>();
         eleitores = new ArrayList();
         urna = new Urna();
     }
@@ -39,6 +41,9 @@ public class ControleEleicao {
      */
     public String listarCandidatos(){
         String candidatosStr = "";
+        
+        Collections.sort(candidatos);
+        
         for(Candidato c : candidatos){
             candidatosStr += c.toString();           
         }
@@ -52,10 +57,10 @@ public class ControleEleicao {
                 contabilizaVoto(voto);
                 eleitor.aposVotar();
             }else{
-                System.err.println("Eleitor já votou!");
+                LOGGER.warn("Eleitor já votou!");
             }
         }else{
-            System.err.println("Eleitor não existe!");
+            LOGGER.warn("Eleitor não existe!");
         }
     }
     

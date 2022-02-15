@@ -1,0 +1,9 @@
+2022-02-15 14:30:43,716 INFO [main] - Adicionando os Candidatos!
+2022-02-15 14:30:43,721 DEBUG [main] - Candidato 1 adicionado!
+2022-02-15 14:30:43,721 DEBUG [main] - Candidato 2 adicionado!
+2022-02-15 14:30:43,722 DEBUG [main] - Candidato 3 adicionado!
+2022-02-15 14:30:43,723 INFO [main] - Candidatos Adicionados!
+2022-02-15 14:30:43,723 INFO [main] - Adicionando Eleitores!
+2022-02-15 14:30:43,725 INFO [main] - Eleitores Adicionados!
+2022-02-15 14:30:52,434 WARN [main] - Eleitor não existe!
+2022-02-15 14:30:56,774 WARN [main] - Eleitor não existe!

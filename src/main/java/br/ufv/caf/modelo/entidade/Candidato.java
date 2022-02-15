@@ -4,7 +4,8 @@ package br.ufv.caf.modelo.entidade;
  *
  * @author fabriciosilva
  */
-public class Candidato extends Docente {
+public class Candidato extends Docente 
+                    implements Comparable<Candidato>{
     private int numero;
     
     public Candidato(String nome, 
@@ -23,5 +24,16 @@ public class Candidato extends Docente {
     public String toString(){
         return super.toString()+
                 "\tCandidato: "+numero+"\n";
+    }
+
+    @Override
+    public int compareTo(Candidato arg0) {
+        if(this.numero < arg0.getNumero()){
+            return -1;
+        }else if(this.numero > arg0.getNumero()){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
