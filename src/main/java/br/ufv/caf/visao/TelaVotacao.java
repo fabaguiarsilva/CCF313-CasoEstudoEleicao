@@ -3,6 +3,7 @@ package br.ufv.caf.visao;
 import br.ufv.caf.controle.ControleEleicao;
 import br.ufv.caf.modelo.entidade.excecao.ExcecaoEleitorJaVotou;
 import br.ufv.caf.modelo.entidade.excecao.ExcecaoEleitorNaoExiste;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -23,13 +24,27 @@ public class TelaVotacao {
         opcao = mostrarMenu();
         
         while(opcao != 1){
+            scan = new Scanner(System.in);
             System.out.println("Digite a sua matrícula:");
-            int matricula = scan.nextInt();
+            int matricula;
+            try{
+                matricula = scan.nextInt();
+            }catch(InputMismatchException ime){
+                System.err.println("Matrícula deve ser um valor inteiro!");
+                continue;
+            }
             //TODO verificar se matricula é válida??
             
             System.out.println("Digite o seu voto:");
             System.out.println(eleicao.listarCandidatos());
-            int voto = scan.nextInt();
+            int voto;
+            try{
+               voto = scan.nextInt();
+            }catch(InputMismatchException ime){
+                System.err.println("Voto deve ser um valor inteiro!");
+                continue;
+            }
+            
             try{
                 eleicao.votar(matricula, voto);
             }catch(ExcecaoEleitorNaoExiste ene){
