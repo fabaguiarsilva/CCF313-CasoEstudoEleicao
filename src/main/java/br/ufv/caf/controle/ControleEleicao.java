@@ -4,9 +4,8 @@ import br.ufv.caf.modelo.entidade.Urna;
 import br.ufv.caf.modelo.entidade.Cedula;
 import br.ufv.caf.modelo.entidade.Eleitor;
 import br.ufv.caf.modelo.entidade.Candidato;
+import br.ufv.caf.modelo.entidade.VotoConsolidado;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import org.apache.log4j.Logger;
 import java.util.Collections;
 
@@ -28,6 +27,7 @@ public class ControleEleicao {
     
     public void addCandidato(Candidato c){
         candidatos.add(c);
+        urna.adicionaCandidatoZerado(c);
     }
     
     public void addEleitor(Eleitor e){
@@ -73,6 +73,15 @@ public class ControleEleicao {
         return null;
     }
     
+    private Candidato recuperaCandidato(int numero){
+        for(Candidato c: candidatos){
+            if(c.getNumero() == numero){
+                return c;
+            }
+        }
+        return null;
+    }
+    
     
     public String resultado(){
         Candidato vencedor = apurarEleicao();
@@ -95,37 +104,23 @@ public class ControleEleicao {
     
     public Candidato apurarEleicao(){
         
-        HashMap<Integer,Integer> votos = urna.contabilizaVotos();
+        ArrayList<VotoConsolidado> votos = 
+                        urna.contabilizaVotos();
         
-        boolean houveEmpate = false;
-        int numeroCandidatoVencedor = -1;
-        int votosVencedor = -1;
+        Collections.sort(votos);
         
-        Iterator<Integer> it = votos.keySet().iterator();
-        
-        while(it.hasNext()){
-            int numeroCandidato = it.next();
-            int votosCandidato = votos.get(numeroCandidato);
-            if(votosCandidato > votosVencedor){
-                numeroCandidatoVencedor = numeroCandidato;
-                votosVencedor = votosCandidato;
-                houveEmpate = false;
-            }else if(votosCandidato == votosVencedor){
-                houveEmpate = true;
-            }            
+        if(votos.size() == 1){
+            return recuperaCandidato(votos.get(0).getNumeroCandidato());
         }
-                          
         
-        if(houveEmpate){
-            //System.out.println("Empate! Rodar novamente!");
+        //Empate
+        if(votos.get(0).getVotos() ==
+                votos.get(1).getVotos()){
+            //Empate
             return null;
-        }else{
-            for(Candidato c : candidatos){
-                if(c.getNumero() == numeroCandidatoVencedor){
-                    return c;
-                }
-            }
-            return null;            
         }
+        
+        return recuperaCandidato(
+                votos.get(0).getNumeroCandidato());        
     }
 }
