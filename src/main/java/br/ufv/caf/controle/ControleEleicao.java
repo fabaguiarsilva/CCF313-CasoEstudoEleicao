@@ -5,6 +5,9 @@ import br.ufv.caf.modelo.entidade.Cedula;
 import br.ufv.caf.modelo.entidade.Eleitor;
 import br.ufv.caf.modelo.entidade.Candidato;
 import br.ufv.caf.modelo.entidade.VotoConsolidado;
+import br.ufv.caf.modelo.entidade.excecao.ExcecaoEleitorJaVotou;
+import br.ufv.caf.modelo.entidade.excecao.ExcecaoEleitorNaoExiste;
+import br.ufv.caf.modelo.entidade.excecao.ExcecaoEmpate;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import java.util.Collections;
@@ -50,7 +53,9 @@ public class ControleEleicao {
         return candidatosStr;
     }
     
-    public void votar(int matricula, int voto){
+    public void votar(int matricula, int voto) 
+            throws ExcecaoEleitorNaoExiste, 
+                   ExcecaoEleitorJaVotou{
         Eleitor eleitor = recuperaEleitor(matricula);
         if(eleitor != null){
             if(eleitor.isAptoVotar()){
@@ -58,9 +63,11 @@ public class ControleEleicao {
                 eleitor.aposVotar();
             }else{
                 LOGGER.warn("Eleitor já votou!");
+                throw new ExcecaoEleitorJaVotou();
             }
         }else{
             LOGGER.warn("Eleitor não existe!");
+            throw new ExcecaoEleitorNaoExiste();
         }
     }
     
@@ -83,13 +90,9 @@ public class ControleEleicao {
     }
     
     
-    public String resultado(){
+    public String resultado() throws ExcecaoEmpate{
         Candidato vencedor = apurarEleicao();
-        if(vencedor != null){            
-            return "Vencedor: "+vencedor.toString();
-        }else{
-            return "Empate!";
-        }
+        return "Vencedor: "+vencedor.toString();
     }
     
     public void contabilizaVoto(int voto){
@@ -102,7 +105,8 @@ public class ControleEleicao {
         }        
     }
     
-    public Candidato apurarEleicao(){
+    public Candidato apurarEleicao() 
+                        throws ExcecaoEmpate{
         
         ArrayList<VotoConsolidado> votos = 
                         urna.contabilizaVotos();
@@ -117,7 +121,7 @@ public class ControleEleicao {
         if(votos.get(0).getVotos() ==
                 votos.get(1).getVotos()){
             //Empate
-            return null;
+            throw new ExcecaoEmpate();
         }
         
         return recuperaCandidato(

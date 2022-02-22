@@ -1,7 +1,10 @@
 package br.ufv.caf.visao;
 
 import br.ufv.caf.controle.ControleEleicao;
+import br.ufv.caf.modelo.entidade.excecao.ExcecaoEleitorJaVotou;
+import br.ufv.caf.modelo.entidade.excecao.ExcecaoEleitorNaoExiste;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +30,13 @@ public class TelaVotacao {
             System.out.println("Digite o seu voto:");
             System.out.println(eleicao.listarCandidatos());
             int voto = scan.nextInt();
-            eleicao.votar(matricula, voto);
+            try{
+                eleicao.votar(matricula, voto);
+            }catch(ExcecaoEleitorNaoExiste ene){
+                System.out.println("Matrícula inválida!");
+            }catch(ExcecaoEleitorJaVotou ejv){
+                JOptionPane.showMessageDialog(null, "Eleitor já votou! Denuncie!");
+            }
             
             opcao = mostrarMenu();            
         }
