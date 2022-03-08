@@ -11,6 +11,7 @@ import br.ufv.caf.modelo.entidade.excecao.ExcecaoEmpate;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -18,24 +19,26 @@ import java.util.Collections;
  */
 public class ControleEleicao {
     private static final Logger LOGGER = Logger.getLogger("br.ufv.caf.eleicao");
-    private ArrayList<Candidato> candidatos;
-    private ArrayList<Eleitor> eleitores;
+    ControleCandidato controleCandidato = new ControleCandidato();
+    ControleEleitor controleEleitor = new ControleEleitor();
+    
     private Urna urna;
     
     public ControleEleicao(){
-        candidatos = new ArrayList<Candidato>();
-        eleitores = new ArrayList();
         urna = new Urna();
     }
     
-    public void addCandidato(Candidato c){
-        candidatos.add(c);
-        urna.adicionaCandidatoZerado(c);
+    
+    public void addCandidatos(){
+        //TODO
+        List<Candidato> candidatos = 
+                controleCandidato.listarTodos();
+        for(Candidato c : candidatos){
+            urna.adicionaCandidatoZerado(c);
+        }
     }
     
-    public void addEleitor(Eleitor e){
-        eleitores.add(e);
-    }   
+    
     
     /**
      * 
@@ -44,6 +47,9 @@ public class ControleEleicao {
      */
     public String listarCandidatos(){
         String candidatosStr = "";
+        
+        List<Candidato> candidatos = 
+                controleCandidato.listarTodos();
         
         Collections.sort(candidatos);
         
@@ -72,6 +78,7 @@ public class ControleEleicao {
     }
     
     private Eleitor recuperaEleitor(int matricula){
+        List<Eleitor> eleitores = controleEleitor.listarTodos();
         for(Eleitor e : eleitores){
             if(e.getMatricula() == matricula){
                 return e;
@@ -81,6 +88,9 @@ public class ControleEleicao {
     }
     
     private Candidato recuperaCandidato(int numero){
+        List<Candidato> candidatos = 
+                controleCandidato.listarTodos();
+        
         for(Candidato c: candidatos){
             if(c.getNumero() == numero){
                 return c;
@@ -96,6 +106,9 @@ public class ControleEleicao {
     }
     
     public void contabilizaVoto(int voto){
+        List<Candidato> candidatos = 
+                controleCandidato.listarTodos();
+        
         for(Candidato c : candidatos){
            if(c.getNumero() == voto){
                 Cedula cedula = new Cedula(voto);

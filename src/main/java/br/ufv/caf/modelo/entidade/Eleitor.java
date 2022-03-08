@@ -1,6 +1,7 @@
 package br.ufv.caf.modelo.entidade;
 
-public class Eleitor extends MembroAcademico {
+public class Eleitor extends MembroAcademico 
+                            implements EntidadeBase {
     private boolean aptoVotar;    
     
     public Eleitor(String nome, 
@@ -23,4 +24,9 @@ public class Eleitor extends MembroAcademico {
         return super.toString()+
                 "\tApto a Votar: "+(aptoVotar?"Sim":"Não")+"\n";
     }    
+
+    @Override
+    public int getId() {
+        return getMatricula();
+    }
 }

@@ -5,7 +5,8 @@ package br.ufv.caf.modelo.entidade;
  * @author fabriciosilva
  */
 public class Candidato extends Docente 
-                    implements Comparable<Candidato>{
+                    implements Comparable<Candidato>,
+                                EntidadeBase {
     private int numero;
     
     public Candidato(String nome, 
@@ -35,5 +36,10 @@ public class Candidato extends Docente
         }else{
             return 0;
         }
+    }
+
+    @Override
+    public int getId() {
+        return getNumero();
     }
 }
