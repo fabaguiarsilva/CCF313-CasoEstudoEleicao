@@ -19,13 +19,16 @@ import java.util.List;
  */
 public class ControleEleicao {
     private static final Logger LOGGER = Logger.getLogger("br.ufv.caf.eleicao");
-    ControleCandidato controleCandidato = new ControleCandidato();
-    ControleEleitor controleEleitor = new ControleEleitor();
+    ControleCandidato controleCandidato;
+    ControleEleitor controleEleitor;
     
     private Urna urna;
     
-    public ControleEleicao(){
+    public ControleEleicao(ControleCandidato controleCandidato,
+            ControleEleitor controleEleitor){
         urna = new Urna();
+        this.controleCandidato = controleCandidato;
+        this.controleEleitor = controleEleitor;
     }
     
     
