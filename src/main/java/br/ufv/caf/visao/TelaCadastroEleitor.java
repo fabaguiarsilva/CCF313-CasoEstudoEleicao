@@ -12,10 +12,10 @@ class TelaCadastroEleitor {
         Scanner scan = new Scanner(System.in);
         scan.useDelimiter("\n");
         
-        System.out.println("Digite o nome do eleitor:");
+        System.out.println("Digite o nome do candidato:");
         String nome = scan.next();
         
-        System.out.println("Digite a matrícula do eleitor:");
+        System.out.println("Digite a matrícula do candidato:");
         int matricula = scan.nextInt();
                 
         try{
