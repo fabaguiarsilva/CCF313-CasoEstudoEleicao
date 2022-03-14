@@ -1,7 +1,7 @@
 package br.ufv.caf.controle;
 
 import br.ufv.caf.modelo.entidade.Candidato;
-import br.ufv.caf.modelo.persistencia.DAOCandidato;
+import br.ufv.caf.modelo.persistencia.DAOGenerico;
 import java.util.List;
 import org.apache.log4j.Logger;
 
@@ -11,10 +11,10 @@ import org.apache.log4j.Logger;
  */
 public class ControleCandidato {
     private static final Logger LOGGER = Logger.getLogger("br.ufv.caf.eleicao");    
-    DAOCandidato daoCandidato;
+    DAOGenerico<Candidato> daoCandidato;
     
     public ControleCandidato(){
-        daoCandidato = new DAOCandidato();
+        daoCandidato = new DAOGenerico<Candidato>();
     }
     
     public void inserir(String nome,
