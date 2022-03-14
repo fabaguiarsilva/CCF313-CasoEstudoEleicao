@@ -21,9 +21,11 @@ public class EleicaoTest {
     ControleEleitor controleEleitor;
     
     void initBeforeAll() throws Exception{
-        eleicao = new ControleEleicao();
         controleCandidato = new ControleCandidato();
         controleEleitor = new ControleEleitor();
+        
+        eleicao = new ControleEleicao(controleCandidato,
+                                        controleEleitor);
         
         
         controleCandidato.inserir("Docente 1",111,"Computação",1);
@@ -63,7 +65,7 @@ public class EleicaoTest {
     public void testApurarEleicao2()  throws Exception {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,2);        
         eleicao.votar(222,2);        
         eleicao.votar(333,2);
@@ -81,7 +83,7 @@ public class EleicaoTest {
     public void testApurarEleicao3()  throws Exception{
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,3);        
         eleicao.votar(222,3);        
         eleicao.votar(333,3);
@@ -97,7 +99,7 @@ public class EleicaoTest {
     @Test
     public void testApurarEleicao4()  throws Exception{
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(222,1);        
         eleicao.votar(333,1);
@@ -114,7 +116,7 @@ public class EleicaoTest {
     public void testApurarEleicao5()  throws Exception{
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(222,2);        
         eleicao.votar(333,3);
@@ -131,7 +133,7 @@ public class EleicaoTest {
     public void testApurarEleicao6()  throws Exception{
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,3);        
         eleicao.votar(222,1);        
         eleicao.votar(333,2);
@@ -148,7 +150,7 @@ public class EleicaoTest {
     public void testApurarEleicao7() throws Exception {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(222,1);        
         eleicao.votar(333,2);
@@ -165,7 +167,7 @@ public class EleicaoTest {
     public void testApurarEleicao8() throws Exception {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,2);        
         eleicao.votar(222,2);        
         eleicao.votar(333,3);
@@ -182,7 +184,7 @@ public class EleicaoTest {
     public void testApurarEleicao9() throws Exception {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(222,2);        
         eleicao.votar(333,3);
@@ -199,7 +201,7 @@ public class EleicaoTest {
     public void testApurarEleicao10() throws Exception {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(222,1);        
         eleicao.votar(333,2);
@@ -217,7 +219,7 @@ public class EleicaoTest {
     public void testApurarEleicao11() throws Exception {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(222,1);        
         eleicao.votar(333,2);
@@ -234,7 +236,7 @@ public class EleicaoTest {
     public void testApurarEleicao12()  throws Exception{
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(8888,1);        
         eleicao.votar(222,1);        
         eleicao.votar(333,2);
@@ -251,7 +253,7 @@ public class EleicaoTest {
     public void testApurarEleicao13() throws Exception {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(222,1);        
         eleicao.votar(333,2);
@@ -269,7 +271,7 @@ public class EleicaoTest {
     public void testApurarEleicao14()  {
         
         try{
-        //initBeforeAll();
+        initBeforeAll();
         eleicao.votar(111,1);        
         eleicao.votar(111,1);        
         eleicao.votar(333,2);

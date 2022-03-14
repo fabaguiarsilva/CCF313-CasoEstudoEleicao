@@ -12,7 +12,9 @@ public class TelaPrincipal {
         ControleCandidato controleCandidato = new ControleCandidato();
         ControleEleitor controleEleitor = new ControleEleitor();
 
-        ControleEleicao eleicao = new ControleEleicao();
+        ControleEleicao eleicao = 
+                new ControleEleicao(controleCandidato,
+                                    controleEleitor);
         
         Scanner scan = new Scanner(System.in);
         int opcao;
