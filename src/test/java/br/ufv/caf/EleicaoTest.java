@@ -21,9 +21,10 @@ public class EleicaoTest {
     ControleEleitor controleEleitor;
     
     void initBeforeAll() throws Exception{
-        eleicao = new ControleEleicao();
         controleCandidato = new ControleCandidato();
         controleEleitor = new ControleEleitor();
+        eleicao = new ControleEleicao(controleCandidato,
+        controleEleitor);
         
         
         controleCandidato.inserir("Docente 1",111,"Computação",1);
@@ -283,5 +284,21 @@ public class EleicaoTest {
         }catch(Exception e){}
     }       
 
-
+    @Test
+    public void testApurarEleicao15()  {
+        
+        try{
+        //initBeforeAll();
+        eleicao.votar(111,1);        
+        eleicao.votar(111,444);        
+        eleicao.votar(333,566);
+        eleicao.votar(333,5665);        
+        eleicao.votar(444,334);        
+        eleicao.votar(555,5544);        
+                
+        Candidato vencedor = eleicao.apurarEleicao();
+        
+        assert(vencedor.getNumero() == 1);
+        }catch(Exception e){}
+    }       
 }

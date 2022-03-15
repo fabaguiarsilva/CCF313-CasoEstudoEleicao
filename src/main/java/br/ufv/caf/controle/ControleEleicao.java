@@ -105,7 +105,10 @@ public class ControleEleicao {
     
     public String resultado() throws ExcecaoEmpate{
         Candidato vencedor = apurarEleicao();
-        return "Vencedor: "+vencedor.toString();
+        String resultado = "Resultado da Eleição\n";
+        resultado += "\nVotos Nulos: "+urna.getVotosNulos();
+        resultado += "\nVencedor: "+vencedor.toString();
+        return resultado;
     }
     
     public void contabilizaVoto(int voto){
@@ -116,9 +119,11 @@ public class ControleEleicao {
            if(c.getNumero() == voto){
                 Cedula cedula = new Cedula(voto);
                 urna.insereCedula(cedula);
-                break;
+                return;
             }
-        }        
+        }       
+        //não achou o candidato para o voto
+        urna.incrementaVotosNulos();
     }
     
     public Candidato apurarEleicao() 

@@ -11,11 +11,13 @@ public class Urna {
     private static final Logger LOGGER = Logger.getLogger("br.ufv.caf.eleicao");    
     private ArrayList<Cedula> listaCedulas;
     private ArrayList<VotoConsolidado> votosConsolidados;    
+    private int votosNulos;
     
     public Urna(){
         listaCedulas = new ArrayList();
         votosConsolidados =
                 new ArrayList<VotoConsolidado>();        
+        votosNulos=0;
     }
     
     public boolean isVazia(){
@@ -30,6 +32,14 @@ public class Urna {
     public void limpaUrna(){
         listaCedulas.clear();
     }
+    
+    public void incrementaVotosNulos(){
+        votosNulos++;
+    }
+    
+    public int getVotosNulos(){
+        return votosNulos;
+    }    
     
     public void adicionaCandidatoZerado(Candidato c){
         VotoConsolidado voto = 
@@ -60,6 +70,5 @@ public class Urna {
                 return;
             }
         } 
-        //TODO tratar voto nulo
     }    
 }
